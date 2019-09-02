@@ -40,4 +40,27 @@ router.get('',async (req,res)=>{
 });
 
 
+// @route    DELETE /notifications
+// @Info     delete notificaions that matches accountId and color
+// @params   accountId --REQUIRED, color --REQUIRED
+router.delete('',async (req,res)=>{
+    const {accountId,color} = req.query;
+    //chack that all args are given
+    if (typeof accountId === 'undefined' ||  color === 'undefined')
+        return res.send({err:"missing fields. request must contain accountId and color  "})
+    
+    // delete all mached nontificaion from db    
+    await Notifications.deleteMany({accountId,color}, (err,result)=>{
+        if(err){
+            console.log(err)
+            return res.send({"error": "An error occurred"});	
+        } else {
+            console.log(result)
+            return res.send({message: 'success',deletedCount:result.deletedCount});	
+        }
+    })
+        
+});
+
+
 module.exports = router;
