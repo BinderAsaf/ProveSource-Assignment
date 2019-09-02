@@ -24,5 +24,20 @@ router.post('', async (req,res)=>{
 });
 
 
+// @route    GET /notifications
+// @Info     return notification specified by accountId
+// @params   accountId --REQUIRED
+router.get('',async (req,res)=>{
+    const {accountId} = req.query;
+    //chack that all args are given
+    if (typeof accountId === 'undefined')
+        return res.send({err:"missing field. request must contain accountId"})
+    
+    // return all the notifiction with accountId
+    await Notifications.find({accountId}, (err,data)=>{
+        return res.send({data})
+    }).select("accountId name color -_id");
+});
+
 
 module.exports = router;
