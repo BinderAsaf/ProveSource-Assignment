@@ -21,7 +21,7 @@ app.use(bodyParser.json())
 
 //routes uses
 app.use('/account/create', require('./api/account/create'));
-
+app.use('/notifications', require('./api/notifications/Notifications'));
 
 app.listen(3000);
 console.log('app running on port 3000...');
