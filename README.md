@@ -8,7 +8,7 @@ Account API:
 - email is unique.
 - POST to /account/create : add new account to the db. 
 
-Notification API;
+Notification API:
 - Notification has accountId, name and color as fields.
 - POST   /notifications : get accountId, name, color as parameters. add new Notification to db.
 - GET    /notifications : get a url parameter: accountId . return all notifications with the  given id. 
