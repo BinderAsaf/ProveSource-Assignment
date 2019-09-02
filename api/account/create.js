@@ -10,7 +10,7 @@ router.post('',async function(req, res) {
 	const {email, name, age} = req.body;
 	//check that an email is given
 	if (typeof email === 'undefined')
-		return res.send({err:"Email is required"});
+		return res.send({"error":"Email is required"});
 	
 	const account = new Account({email, name, age});
 	// add the new account to db
@@ -23,7 +23,7 @@ router.post('',async function(req, res) {
 		if(err.code == 11000)
 			return res.send({"error": "Email already exists"});
 		else
-			return res.send({"error": "An error occurred"});		
+			return res.send({"error": "An error occurred. chack your input and try again."});		
 	});
 	
 });
